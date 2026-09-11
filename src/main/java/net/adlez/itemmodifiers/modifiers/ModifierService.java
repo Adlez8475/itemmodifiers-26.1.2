@@ -73,8 +73,6 @@ public class ModifierService {
             if (!stack.getHoverName().getString().startsWith(modifierName)) {
                 MutableComponent newName = Component.translatable(modifierName + " ").append(Component.translatable(itemName)).withStyle((style) -> style.withColor(modifier.getRarity().getColor()).withItalic(false));
                 stack.set(DataComponents.CUSTOM_NAME, newName);
-            } else {
-                stack.set(DataComponents.CUSTOM_NAME, null);
             }
         }
     }
