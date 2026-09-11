@@ -7,8 +7,8 @@ Add Terraria's modifier system to Minecraft 26.1.2!
 
 To Do list
 =======
-- Fix : shift-clicking = no modifier component 
 - Make Minecraft really applying modifier
+- Add more modifiers (for pickaxes and stuff)
 
 Credits:
 ============
