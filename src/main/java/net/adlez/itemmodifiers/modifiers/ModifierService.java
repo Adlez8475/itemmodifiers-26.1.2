@@ -1,6 +1,9 @@
 package net.adlez.itemmodifiers.modifiers;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
@@ -61,4 +64,18 @@ public class ModifierService {
 
     public record ModifierAttribute(Holder<Attribute> attribute, double amount,
                                     AttributeModifier.Operation operation) {}
+
+    public static void setItemNameAndColor(ItemStack stack) {
+        Modifier modifier = ModifierService.getModifier(stack);
+        if (modifier != null && modifier.getRarity() != Rarity.UNCHANGED) {
+            String itemName = stack.getItemName().getString();
+            String modifierName = modifier.getName();
+            if (!stack.getHoverName().getString().startsWith(modifierName)) {
+                MutableComponent newName = Component.translatable(modifierName + " ").append(Component.translatable(itemName)).withStyle((style) -> style.withColor(modifier.getRarity().getColor()).withItalic(false));
+                stack.set(DataComponents.CUSTOM_NAME, newName);
+            } else {
+                stack.set(DataComponents.CUSTOM_NAME, null);
+            }
+        }
+    }
 }
