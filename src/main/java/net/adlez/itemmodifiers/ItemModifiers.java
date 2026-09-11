@@ -1,6 +1,6 @@
 package net.adlez.itemmodifiers;
 
-import net.adlez.itemmodifiers.modifiers.ModifierRegistry;
+import net.adlez.itemmodifiers.modifiers.ModDataComponents;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -34,7 +34,7 @@ public class ItemModifiers {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        ModifierRegistry.COMPONENTS.register(modEventBus);
+        ModDataComponents.COMPONENTS.register(modEventBus);
         // NeoForge.EVENT_BUS.register(new DebugModifiers());
     }
 
