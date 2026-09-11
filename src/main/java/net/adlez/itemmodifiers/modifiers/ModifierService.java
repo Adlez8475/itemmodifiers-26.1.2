@@ -1,15 +1,19 @@
 package net.adlez.itemmodifiers.modifiers;
 
+import net.minecraft.core.Holder;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.Random;
 
 public class ModifierService {
     public static Modifier setModifier (ItemStack stack, Modifier modifier) {
-        return stack.set(ModifierRegistry.MODIFIER.get(), modifier);
+        return stack.set(ModDataComponents.MODIFIER.get(), modifier);
     }
+
     public static Modifier getModifier (ItemStack stack) {
-        return stack.get(ModifierRegistry.MODIFIER.get());
+        return stack.get(ModDataComponents.MODIFIER.get());
     }
 
     public static Modifier modifierRoll() {
@@ -54,4 +58,7 @@ public class ModifierService {
         return modifiers[number];
 
     }
+
+    public record ModifierAttribute(Holder<Attribute> attribute, double amount,
+                                    AttributeModifier.Operation operation) {}
 }
