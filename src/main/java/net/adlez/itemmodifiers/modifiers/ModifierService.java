@@ -1,6 +1,7 @@
 package net.adlez.itemmodifiers.modifiers;
 
 import net.adlez.itemmodifiers.ItemModifiers;
+import net.adlez.itemmodifiers.event.ModifierEvents;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -20,7 +21,7 @@ public class ModifierService {
         ItemAttributeModifiers modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
         for (ModifierAttribute effect : modifier.getAttribute()) {
             AttributeModifier attributeModifier = new AttributeModifier(getModifierId(modifier), effect.amount(), effect.operation());
-            modifiers = modifiers.withModifierAdded(effect.attribute(), attributeModifier, effect.slot());
+            modifiers = modifiers.withModifierAdded(effect.attribute(), attributeModifier, modifier.getSlot());
         }
 
         stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
@@ -38,10 +39,11 @@ public class ModifierService {
         return stack.get(ModDataComponents.MODIFIER.get());
     }
 
-    public static Modifier modifierRoll() {
+    public static Modifier modifierRoll(ItemStack stack) {
         Random random = new Random();
-        int number = random.nextInt(100);
+        int number = random.nextInt(101);
         Rarity rarity;
+        EquipmentSlotGroup slot;
         if (number < Rarity.MYTHIC.getWeight()) {
             rarity = Rarity.MYTHIC;
         } else if (number < Rarity.LEGENDARY.getWeight()) {
@@ -58,31 +60,56 @@ public class ModifierService {
             rarity = Rarity.UNCHANGED;
         }
 
-        int nbrRarete = 0;
+        if (rarity != Rarity.UNCHANGED) {
+            int nbrRarete = 0;
 
-        for (Modifier modifier : Modifier.values()) {
-            if (modifier.getRarity() == rarity) {
-                nbrRarete++;
+            if (ModifierEvents.canHaveModifiersArmor(stack)) {
+                slot = EquipmentSlotGroup.ARMOR;
+                for (Modifier modifier : Modifier.values()) {
+                    if (modifier.getRarity() == rarity && modifier.getSlot() == slot) {
+                        nbrRarete++;
+                    }
+                }
+            } else if (ModifierEvents.canHaveModifiersWeapon(stack) || ModifierEvents.canHaveModifiersBow(stack)) {
+                slot = EquipmentSlotGroup.HAND;
+                for (Modifier modifier : Modifier.values()) {
+                    if (modifier.getRarity() == rarity && modifier.getSlot() == slot) {
+                        nbrRarete++;
+                    }
+                }
+
             }
-        }
 
-        Modifier[] modifiers = new Modifier[nbrRarete];
-        int i = 0;
+            Modifier[] modifiers = new Modifier[nbrRarete + 1];
+            int i = 0;
 
-        for (Modifier modifier : Modifier.values()) {
-            if (modifier.getRarity() == rarity) {
-                modifiers[i] = modifier;
-                i++;
+            if (ModifierEvents.canHaveModifiersArmor(stack)) {
+                slot = EquipmentSlotGroup.ARMOR;
+                for (Modifier modifier : Modifier.values()) {
+                    if (modifier.getRarity() == rarity  && modifier.getSlot() == slot) {
+                        modifiers[i] = modifier;
+                        i++;
+                    }
+                }
             }
+            if (ModifierEvents.canHaveModifiersWeapon(stack) || ModifierEvents.canHaveModifiersBow(stack)) {
+                slot = EquipmentSlotGroup.HAND;
+                for (Modifier modifier : Modifier.values()) {
+                    if (modifier.getRarity() == rarity  && modifier.getSlot() == slot) {
+                        modifiers[i] = modifier;
+                        i++;
+                    }
+                }
+            }
+
+            number = random.nextInt(nbrRarete);
+            return modifiers[number];
         }
-
-        number = random.nextInt(nbrRarete);
-        return modifiers[number];
-
+        return Modifier.UNCHANGED;
     }
 
     public record ModifierAttribute(Holder<Attribute> attribute, double amount,
-                                    AttributeModifier.Operation operation, EquipmentSlotGroup slot) {}
+                                    AttributeModifier.Operation operation) {}
 
     public static void setItemNameAndColor(ItemStack stack) {
         Modifier modifier = ModifierService.getModifier(stack);
