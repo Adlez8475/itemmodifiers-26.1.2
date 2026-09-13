@@ -51,10 +51,13 @@ public class ModifierEvents {
 
 
     // Cover events or things that entities do to
+
     @SubscribeEvent
     public static void inventoryChanged(ItemEntityPickupEvent.Post event) {
         processInventory(event.getPlayer());
     }
+
+
 
     @SubscribeEvent
     public static void playerJoiningWorld (PlayerEvent.PlayerLoggedInEvent event) {
@@ -72,6 +75,7 @@ public class ModifierEvents {
         processInventory(event.getEntity());
     }
 
+
     private static void processInventory(Player player) {
         for(ItemStack stack : player.getInventory()) {
             if ((ModifierEvents.canHaveModifiersArmor(stack) || ModifierEvents.canHaveModifiersBow(stack) || ModifierEvents.canHaveModifiersWeapon(stack)) && ModifierService.getModifier(stack) == null) {
@@ -80,4 +84,6 @@ public class ModifierEvents {
         }
 
     }
+
+
 }

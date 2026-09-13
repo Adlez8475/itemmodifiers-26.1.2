@@ -5,13 +5,13 @@ import net.adlez.itemmodifiers.event.ModifierEvents;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Random;
 
@@ -35,7 +35,7 @@ public class ModifierService {
         );
     }
 
-    public static Modifier getModifier (ItemStack stack) {
+    public static Modifier getModifier(@NonNull ItemStack stack) {
         return stack.get(ModDataComponents.MODIFIER.get());
     }
 
@@ -114,12 +114,17 @@ public class ModifierService {
     public static void setItemNameAndColor(ItemStack stack) {
         Modifier modifier = ModifierService.getModifier(stack);
         if (modifier != null && modifier.getRarity() != Rarity.UNCHANGED) {
-            String itemName = stack.getItemName().getString();
+            Component baseName = stack.getItem().getName(stack);
             String modifierName = modifier.getName();
             if (!stack.getHoverName().getString().startsWith(modifierName)) {
-                MutableComponent newName = Component.translatable(modifierName + " ").append(Component.translatable(itemName)).withStyle((style) -> style.withColor(modifier.getRarity().getColor()).withItalic(false));
+                Component newName = Component.translatable(modifier.getName() + " ").append(baseName).withStyle(style -> style.withColor(modifier.getRarity().getColor()).withItalic(false));
                 stack.set(DataComponents.CUSTOM_NAME, newName);
             }
         }
+    }
+
+    public static void removeModifier(ItemStack stack) {
+        stack.remove(ModDataComponents.MODIFIER.get());
+        stack.remove(DataComponents.CUSTOM_NAME);
     }
 }
