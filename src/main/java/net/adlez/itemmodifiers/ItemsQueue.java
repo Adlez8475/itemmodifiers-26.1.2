@@ -27,16 +27,9 @@ public class ItemsQueue {
     private static void processQueue() {
         QueuedItem queuedItem;
         for(; (queuedItem = (QueuedItem)itemQueue.poll()) != null; ModifierService.setItemNameAndColor(queuedItem.stack)) {
-            if (( ModifierEvents.canHaveModifiersArmor(queuedItem.stack) || ModifierEvents.canHaveModifiersBow(queuedItem.stack) || ModifierEvents.canHaveModifiersWeapon(queuedItem.stack)) && ModifierService.getModifier(queuedItem.stack) == null) {
-                ModifierService.setModifier(queuedItem.stack, ModifierService.modifierRoll());
-                // ModifierService.setItemNameAndColor(queuedItem.stack);
+            if ((ModifierEvents.canHaveModifiersArmor(queuedItem.stack) || (ModifierEvents.canHaveModifiersBow(queuedItem.stack) || ModifierEvents.canHaveModifiersWeapon(queuedItem.stack))) && ModifierService.getModifier(queuedItem.stack) == null) {
+                ModifierService.setModifier(queuedItem.stack, ModifierService.modifierRoll(queuedItem.stack));
             }
-            /*
-            if (ModifierEvents.canHaveModifiersArmor(queuedItem.stack) && ModifierService.getModifier(queuedItem.stack) == null) {
-                ModifierService.setModifier(queuedItem.stack, ModifierService.modifierRoll());
-            }
-
-             */
         }
 
     }
