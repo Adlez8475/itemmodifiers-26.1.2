@@ -1,18 +1,37 @@
 package net.adlez.itemmodifiers.modifiers;
 
+import net.adlez.itemmodifiers.ItemModifiers;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 import java.util.Random;
 
 public class ModifierService {
-    public static Modifier setModifier (ItemStack stack, Modifier modifier) {
-        return stack.set(ModDataComponents.MODIFIER.get(), modifier);
+
+    public static void setModifier (ItemStack stack, Modifier modifier) {
+        ItemAttributeModifiers modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
+        for (ModifierAttribute effect : modifier.getAttribute()) {
+            AttributeModifier attributeModifier = new AttributeModifier(getModifierId(modifier), effect.amount(), effect.operation());
+            modifiers = modifiers.withModifierAdded(effect.attribute(), attributeModifier, effect.slot());
+        }
+
+        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, modifiers);
+        stack.set(ModDataComponents.MODIFIER.get(), modifier);
+    }
+
+    private static Identifier getModifierId(Modifier modifier) {
+        return Identifier.fromNamespaceAndPath(
+                ItemModifiers.MODID,
+                "modifier." + modifier.name().toLowerCase()
+        );
     }
 
     public static Modifier getModifier (ItemStack stack) {
@@ -63,7 +82,7 @@ public class ModifierService {
     }
 
     public record ModifierAttribute(Holder<Attribute> attribute, double amount,
-                                    AttributeModifier.Operation operation) {}
+                                    AttributeModifier.Operation operation, EquipmentSlotGroup slot) {}
 
     public static void setItemNameAndColor(ItemStack stack) {
         Modifier modifier = ModifierService.getModifier(stack);

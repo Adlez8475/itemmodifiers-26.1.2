@@ -31,6 +31,12 @@ public class ItemsQueue {
                 ModifierService.setModifier(queuedItem.stack, ModifierService.modifierRoll());
                 // ModifierService.setItemNameAndColor(queuedItem.stack);
             }
+            /*
+            if (ModifierEvents.canHaveModifiersArmor(queuedItem.stack) && ModifierService.getModifier(queuedItem.stack) == null) {
+                ModifierService.setModifier(queuedItem.stack, ModifierService.modifierRoll());
+            }
+
+             */
         }
 
     }

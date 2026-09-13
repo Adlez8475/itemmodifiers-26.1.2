@@ -1,7 +1,6 @@
 package net.adlez.itemmodifiers.event;
 
 
-import net.adlez.itemmodifiers.ItemModifiers;
 import net.adlez.itemmodifiers.ItemsQueue;
 import net.adlez.itemmodifiers.modifiers.Modifier;
 import net.adlez.itemmodifiers.modifiers.ModifierService;
@@ -20,6 +19,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.neoforged.fml.common.EventBusSubscriber;
 
+import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
@@ -35,6 +35,16 @@ public class ModifierEvents {
     }
     public static boolean canHaveModifiersBow(ItemStack stack) {
         return !stack.isEmpty() && stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem;
+    }
+
+    @SubscribeEvent
+    public static void inventoryChanged (ItemEntityPickupEvent.Post event) {
+        processInventory(event.getPlayer());
+    }
+
+    @SubscribeEvent
+    public static void playerJoiningWorld (PlayerEvent.PlayerLoggedInEvent event) {
+        processInventory(event.getEntity());
     }
 
     @SubscribeEvent(
@@ -58,10 +68,15 @@ public class ModifierEvents {
             }
         }
         if (canHaveModifiersArmor(craftedItem)){
-            ItemModifiers.LOGGER.info("Le PJ a fabriqué une armure.");
+
+            if (ModifierService.getModifier(craftedItem) == null) {
+                ItemsQueue.addItem(craftedItem, event.getEntity());
+            }
         }
         if (canHaveModifiersBow(craftedItem)) {
-            ItemModifiers.LOGGER.info("Le PJ a fabriqué un arc ou une arbalète.");
+            if (ModifierService.getModifier(craftedItem) == null) {
+                ItemsQueue.addItem(craftedItem, event.getEntity());
+            }
         }
         processInventory(event.getEntity());
     }
