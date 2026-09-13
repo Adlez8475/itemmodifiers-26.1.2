@@ -7,7 +7,6 @@ import net.adlez.itemmodifiers.modifiers.ModifierService;
 import net.adlez.itemmodifiers.modifiers.Rarity;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
 
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
@@ -37,15 +36,6 @@ public class ModifierEvents {
         return !stack.isEmpty() && stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem;
     }
 
-    @SubscribeEvent
-    public static void inventoryChanged (ItemEntityPickupEvent.Post event) {
-        processInventory(event.getPlayer());
-    }
-
-    @SubscribeEvent
-    public static void playerJoiningWorld (PlayerEvent.PlayerLoggedInEvent event) {
-        processInventory(event.getEntity());
-    }
 
     @SubscribeEvent(
             priority = EventPriority.NORMAL,
@@ -55,25 +45,26 @@ public class ModifierEvents {
         ItemStack stack = event.getItemStack();
         Modifier modifier = ModifierService.getModifier(stack);
         if (modifier != null && modifier.getRarity() != Rarity.UNCHANGED) {
-            event.getToolTip().set(0, ((Component) event.getToolTip().getFirst()).copy().withStyle((style) -> style.withColor((modifier.getRarity().getColor()))));
+            event.getToolTip().set(0, (event.getToolTip().getFirst()).copy().withStyle((style) -> style.withColor((modifier.getRarity().getColor()))));
         }
+    }
+
+
+    // Cover events or things that entities do to
+    @SubscribeEvent
+    public static void inventoryChanged(ItemEntityPickupEvent.Post event) {
+        processInventory(event.getPlayer());
+    }
+
+    @SubscribeEvent
+    public static void playerJoiningWorld (PlayerEvent.PlayerLoggedInEvent event) {
+        processInventory(event.getEntity());
     }
 
     @SubscribeEvent
     public static void onCraftedItem(PlayerEvent.ItemCraftedEvent event) {
         ItemStack craftedItem = event.getCrafting();
-        if (canHaveModifiersWeapon(craftedItem)) {
-            if (ModifierService.getModifier(craftedItem) == null) {
-                ItemsQueue.addItem(craftedItem, event.getEntity());
-            }
-        }
-        if (canHaveModifiersArmor(craftedItem)){
-
-            if (ModifierService.getModifier(craftedItem) == null) {
-                ItemsQueue.addItem(craftedItem, event.getEntity());
-            }
-        }
-        if (canHaveModifiersBow(craftedItem)) {
+        if (canHaveModifiersWeapon(craftedItem) || canHaveModifiersArmor(craftedItem) || canHaveModifiersBow(craftedItem)) {
             if (ModifierService.getModifier(craftedItem) == null) {
                 ItemsQueue.addItem(craftedItem, event.getEntity());
             }
@@ -82,8 +73,8 @@ public class ModifierEvents {
     }
 
     private static void processInventory(Player player) {
-        for(ItemStack stack : player.getInventory().getNonEquipmentItems()) {
-            if (( ModifierEvents.canHaveModifiersArmor(stack) || ModifierEvents.canHaveModifiersBow(stack) || ModifierEvents.canHaveModifiersWeapon(stack)) && ModifierService.getModifier(stack) == null) {
+        for(ItemStack stack : player.getInventory()) {
+            if ((ModifierEvents.canHaveModifiersArmor(stack) || ModifierEvents.canHaveModifiersBow(stack) || ModifierEvents.canHaveModifiersWeapon(stack)) && ModifierService.getModifier(stack) == null) {
                 ItemsQueue.addItem(stack, player);
             }
         }
