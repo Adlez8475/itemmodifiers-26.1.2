@@ -15,21 +15,21 @@ public enum Modifier {
     POINTY(
             "Pointy",
             Rarity.COMMON,
-            EquipmentSlotGroup.HAND,
+            EquipmentSlotGroup.MAINHAND,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.1,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     RAPID(
             "Rapid",
             Rarity.UNCOMMON,
-            EquipmentSlotGroup.HAND,
+            EquipmentSlotGroup.MAINHAND,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     MURDEROUS(
             "Murderous",
             Rarity.RARE,
-            EquipmentSlotGroup.HAND,
+            EquipmentSlotGroup.MAINHAND,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.125F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.125F,
@@ -38,14 +38,14 @@ public enum Modifier {
     DEMONIC(
             "Demonic",
             Rarity.EPIC,
-            EquipmentSlotGroup.HAND,
+            EquipmentSlotGroup.MAINHAND,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     LEGENDARY(
             "Legendary",
             Rarity.LEGENDARY,
-            EquipmentSlotGroup.HAND,
+            EquipmentSlotGroup.MAINHAND,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.1,
@@ -54,7 +54,7 @@ public enum Modifier {
     UNREAL(
             "Unreal",
             Rarity.MYTHIC,
-            EquipmentSlotGroup.HAND,
+            EquipmentSlotGroup.MAINHAND,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.4,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.25F,

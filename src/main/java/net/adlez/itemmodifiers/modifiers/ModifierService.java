@@ -71,7 +71,7 @@ public class ModifierService {
                     }
                 }
             } else if (ModifierEvents.canHaveModifiersWeapon(stack) || ModifierEvents.canHaveModifiersBow(stack)) {
-                slot = EquipmentSlotGroup.HAND;
+                slot = EquipmentSlotGroup.MAINHAND;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity && modifier.getSlot() == slot) {
                         nbrRarete++;
@@ -93,7 +93,7 @@ public class ModifierService {
                 }
             }
             if (ModifierEvents.canHaveModifiersWeapon(stack) || ModifierEvents.canHaveModifiersBow(stack)) {
-                slot = EquipmentSlotGroup.HAND;
+                slot = EquipmentSlotGroup.MAINHAND;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity  && modifier.getSlot() == slot) {
                         modifiers[i] = modifier;
@@ -126,5 +126,21 @@ public class ModifierService {
     public static void removeModifier(ItemStack stack) {
         stack.remove(ModDataComponents.MODIFIER.get());
         stack.remove(DataComponents.CUSTOM_NAME);
+        ItemAttributeModifiers current = stack.get(DataComponents.ATTRIBUTE_MODIFIERS);
+
+        if (current == null) {
+            return;
+        }
+
+        ItemAttributeModifiers.Builder builder = ItemAttributeModifiers.builder();
+
+        for (ItemAttributeModifiers.Entry entry : current.modifiers()) {
+            AttributeModifier modifier = entry.modifier();
+            if (!modifier.id().getNamespace().equals(ItemModifiers.MODID)) {
+                builder.add(entry.attribute(), modifier, entry.slot());
+            }
+        }
+
+        stack.set(DataComponents.ATTRIBUTE_MODIFIERS, builder.build());
     }
 }
