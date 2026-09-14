@@ -74,7 +74,7 @@ public class ModifierService {
                 }
             }
             if (stack.is(ItemTags.SWORDS)) {
-                type = ItemType.SWORD;
+                type = ItemType.WEAPONS;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity && modifier.getType() == type) {
                         nbrRarete++;
@@ -104,7 +104,7 @@ public class ModifierService {
                 }
             }
             if (stack.is(ItemTags.SWORDS)) {
-                type = ItemType.SWORD;
+                type = ItemType.WEAPONS;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity  && modifier.getType() == type) {
                         modifiers[i] = modifier;
@@ -128,8 +128,7 @@ public class ModifierService {
         return Modifier.UNCHANGED;
     }
 
-    public record ModifierAttribute(Holder<Attribute> attribute, double amount,
-                                    AttributeModifier.Operation operation) {}
+    public record ModifierAttribute(Holder<Attribute> attribute, double amount, AttributeModifier.Operation operation) {}
 
     public static void setItemNameAndColor(ItemStack stack) {
         Modifier modifier = ModifierService.getModifier(stack);
