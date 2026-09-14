@@ -40,7 +40,6 @@ public class ModifierService {
     }
 
     public static Modifier modifierRoll(ItemStack stack) {
-        ItemModifiers.LOGGER.info("L'objet créé est un {}.", ItemType.getItemType(stack));
         Random random = new Random();
         int number = random.nextInt(101);
         Rarity rarity;
