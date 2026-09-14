@@ -1,14 +1,14 @@
 
-Item Modifiers by Adlez
+Item Modifiers by Adlez, originally rhysr6s
 =======
 
 Add Terraria's modifier system to Minecraft 26.1.2!
 
 
-To Do list
+To Do
 =======
-- Detect Smithing table output for Netherite things (can be "fixed" by dropping and picking up the item)
-- Add more modifiers (for pickaxes and stuff)
+- Fix some modifiers (wrong attributes)
+- Add more modifiers
 
 Credits:
 ============
