@@ -16,14 +16,14 @@ public enum Modifier {
             "Hefty",
             Rarity.COMMON,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, -0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     POINTY(
             "Pointy",
             Rarity.COMMON,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.1,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
@@ -31,7 +31,7 @@ public enum Modifier {
             "Rapid",
             Rarity.UNCOMMON,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
@@ -39,7 +39,7 @@ public enum Modifier {
             "Murderous",
             Rarity.RARE,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.125F,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.125F,
@@ -49,7 +49,7 @@ public enum Modifier {
             "Demonic",
             Rarity.EPIC,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
@@ -57,7 +57,7 @@ public enum Modifier {
             "Legendary",
             Rarity.LEGENDARY,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.1,
@@ -67,7 +67,7 @@ public enum Modifier {
             "Unreal",
             Rarity.MYTHIC,
             EquipmentSlotGroup.MAINHAND,
-            ItemType.SWORD,
+            ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.4,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.25F,
@@ -97,13 +97,20 @@ public enum Modifier {
             new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.15,
                     AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    FORTUITOUS(
+          "Fortuitous",
+          Rarity.RARE,
+          EquipmentSlotGroup.MAINHAND,
+          ItemType.TOOLS,
+          new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.1, AttributeModifier.Operation.ADD_VALUE)
+    ),
     PROSPECTOR(
           "Prospector",
           Rarity.RARE,
           EquipmentSlotGroup.MAINHAND,
           ItemType.TOOLS,
-          new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-          // Ajouter doubledrop
+          new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+          new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE)
     ),
     FLEET(
             "Fleet",
@@ -113,6 +120,22 @@ public enum Modifier {
             new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    LUCKY(
+            "Lucky",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.LUCK,2.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE)
+    ),
+    ARCANE(
+            "Arcane",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.2, AttributeModifier.Operation.ADD_VALUE)
+    ),
     MIGHTY(
             "Mighty",
             Rarity.LEGENDARY,
@@ -120,12 +143,37 @@ public enum Modifier {
             ItemType.TOOLS,
             new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    EARTH_SHAKER(
+            "Earth Shaker",
+            Rarity.LEGENDARY,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.75, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.3, AttributeModifier.Operation.ADD_VALUE)
+    ),
     ETERNAL(
             "Eternal",
             Rarity.MYTHIC,
             EquipmentSlotGroup.MAINHAND,
             ItemType.TOOLS,
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    TITANIC(
+            "Titanic",
+            Rarity.MYTHIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.25, AttributeModifier.Operation.ADD_VALUE)
+    ),
+    COSMIC(
+            "Cosmic",
+            Rarity.MYTHIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,1.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.4, AttributeModifier.Operation.ADD_VALUE),
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
 
 
