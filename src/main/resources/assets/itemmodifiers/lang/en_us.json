@@ -1,5 +1,7 @@
 {
   "itemmodifiers.configuration.title": "Item Modifiers Configs",
   "itemmodifiers.configuration.section.itemmodifiers.common.toml": "Item Modifiers Configs",
-  "itemmodifiers.configuration.section.itemmodifiers.common.toml.title": "Item Modifiers Configs"
+  "itemmodifiers.configuration.section.itemmodifiers.common.toml.title": "Item Modifiers Configs",
+  "attribute.itemmodifiers.double_drop_chance": "Double Drop Chance"
+
 }
