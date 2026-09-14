@@ -1,17 +1,20 @@
 package net.adlez.itemmodifiers.event;
 
 
+import net.adlez.itemmodifiers.ItemModifiers;
 import net.adlez.itemmodifiers.ItemsQueue;
-import net.adlez.itemmodifiers.modifiers.ItemType;
-import net.adlez.itemmodifiers.modifiers.Modifier;
-import net.adlez.itemmodifiers.modifiers.ModifierService;
-import net.adlez.itemmodifiers.modifiers.Rarity;
+import net.adlez.itemmodifiers.modifiers.*;
 
+import net.adlez.itemmodifiers.modifiers.Rarity;
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.item.*;
 import net.minecraft.world.entity.player.Player;
 
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -21,6 +24,10 @@ import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
+import org.apache.commons.lang3.tuple.Pair;
+
+import java.util.List;
+import java.util.function.Supplier;
 
 
 @EventBusSubscriber(modid = "itemmodifiers")
@@ -53,9 +60,26 @@ public class ModifierEvents {
             ItemStack tool = player.getMainHandItem();
             Modifier modifier = ModifierService.getModifier(tool);
             if (modifier != null) {
-                double doubleChance = 0;
+                double doubleChance = getMinedDropDoubleChance(modifier);
+                System.out.println(doubleChance);
+                if (!(doubleChance <= (double)0.0F)) {
+                    if (serverLevel.getRandom().nextDouble() < doubleChance) {
+                        for(ItemStack drop : Block.getDrops(event.getState(), serverLevel, event.getPos(), null, player, tool )) {
+                            Block.popResource(serverLevel, event.getPos(), drop.copy());
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private static double getMinedDropDoubleChance(Modifier modifier) {
+        for(ModifierService.ModifierAttribute entry : modifier.getAttribute()) {
+            if (entry.attribute().equals(ModDataComponents.DOUBLE_DROP_CHANCE)) {
+                return (entry.amount());
+            }
+        }
+        return 0.0;
     }
 
     @SubscribeEvent
