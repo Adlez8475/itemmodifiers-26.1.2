@@ -7,9 +7,11 @@ import net.adlez.itemmodifiers.modifiers.Modifier;
 import net.adlez.itemmodifiers.modifiers.ModifierService;
 import net.adlez.itemmodifiers.modifiers.Rarity;
 
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.*;
 import net.minecraft.world.entity.player.Player;
 
+import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 
@@ -18,6 +20,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 
 
 @EventBusSubscriber(modid = "itemmodifiers")
@@ -42,7 +45,18 @@ public class ModifierEvents {
         processInventory(event.getPlayer());
     }
 
-
+    @SubscribeEvent
+    public static void playerBlockBreak(BreakBlockEvent event) {
+        LevelAccessor var2 = event.getLevel();
+        if (var2 instanceof ServerLevel serverLevel) {
+            Player player = event.getPlayer();
+            ItemStack tool = player.getMainHandItem();
+            Modifier modifier = ModifierService.getModifier(tool);
+            if (modifier != null) {
+                double doubleChance = 0;
+            }
+        }
+    }
 
     @SubscribeEvent
     public static void playerJoiningWorld (PlayerEvent.PlayerLoggedInEvent event) {
