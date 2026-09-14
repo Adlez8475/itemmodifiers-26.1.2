@@ -1,11 +1,11 @@
 package net.adlez.itemmodifiers.modifiers;
 
 import net.adlez.itemmodifiers.ItemModifiers;
-import net.adlez.itemmodifiers.event.ModifierEvents;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -40,10 +40,12 @@ public class ModifierService {
     }
 
     public static Modifier modifierRoll(ItemStack stack) {
+        ItemModifiers.LOGGER.info("L'objet créé est un {}.", ItemType.getItemType(stack));
         Random random = new Random();
         int number = random.nextInt(101);
         Rarity rarity;
         EquipmentSlotGroup slot;
+        ItemType type;
         if (number < Rarity.MYTHIC.getWeight()) {
             rarity = Rarity.MYTHIC;
         } else if (number < Rarity.LEGENDARY.getWeight()) {
@@ -63,27 +65,36 @@ public class ModifierService {
         if (rarity != Rarity.UNCHANGED) {
             int nbrRarete = 0;
 
-            if (ModifierEvents.canHaveModifiersArmor(stack)) {
+            if (ItemType.getItemType(stack) == ItemType.ARMOR) {
                 slot = EquipmentSlotGroup.ARMOR;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity && modifier.getSlot() == slot) {
                         nbrRarete++;
                     }
                 }
-            } else if (ModifierEvents.canHaveModifiersWeapon(stack) || ModifierEvents.canHaveModifiersBow(stack)) {
-                slot = EquipmentSlotGroup.MAINHAND;
+            }
+            if (stack.is(ItemTags.SWORDS)) {
+                type = ItemType.SWORD;
                 for (Modifier modifier : Modifier.values()) {
-                    if (modifier.getRarity() == rarity && modifier.getSlot() == slot) {
+                    if (modifier.getRarity() == rarity && modifier.getType() == type) {
                         nbrRarete++;
                     }
                 }
 
             }
+            if (ItemType.getItemType(stack) == ItemType.TOOLS) {
+                type = ItemType.TOOLS;
+                for (Modifier modifier : Modifier.values()) {
+                    if (modifier.getRarity() == rarity && modifier.getType() == type) {
+                        nbrRarete++;
+                    }
+                }
+            }
 
             Modifier[] modifiers = new Modifier[nbrRarete + 1];
             int i = 0;
 
-            if (ModifierEvents.canHaveModifiersArmor(stack)) {
+            if (ItemType.getItemType(stack) == ItemType.ARMOR) {
                 slot = EquipmentSlotGroup.ARMOR;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity  && modifier.getSlot() == slot) {
@@ -92,10 +103,19 @@ public class ModifierService {
                     }
                 }
             }
-            if (ModifierEvents.canHaveModifiersWeapon(stack) || ModifierEvents.canHaveModifiersBow(stack)) {
-                slot = EquipmentSlotGroup.MAINHAND;
+            if (stack.is(ItemTags.SWORDS)) {
+                type = ItemType.SWORD;
                 for (Modifier modifier : Modifier.values()) {
-                    if (modifier.getRarity() == rarity  && modifier.getSlot() == slot) {
+                    if (modifier.getRarity() == rarity  && modifier.getType() == type) {
+                        modifiers[i] = modifier;
+                        i++;
+                    }
+                }
+            }
+            if (ItemType.getItemType(stack) == ItemType.TOOLS) {
+                type = ItemType.TOOLS;
+                for (Modifier modifier : Modifier.values()) {
+                    if (modifier.getRarity() == rarity  && modifier.getType() == type) {
                         modifiers[i] = modifier;
                         i++;
                     }
