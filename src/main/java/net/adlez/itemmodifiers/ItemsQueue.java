@@ -1,6 +1,6 @@
 package net.adlez.itemmodifiers;
 
-import net.adlez.itemmodifiers.event.ModifierEvents;
+import net.adlez.itemmodifiers.modifiers.ItemType;
 import net.adlez.itemmodifiers.modifiers.ModifierService;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -27,11 +27,10 @@ public class ItemsQueue {
     private static void processQueue() {
         QueuedItem queuedItem;
         for(; (queuedItem = (QueuedItem)itemQueue.poll()) != null; ModifierService.setItemNameAndColor(queuedItem.stack)) {
-            if ((ModifierEvents.canHaveModifiersArmor(queuedItem.stack) || (ModifierEvents.canHaveModifiersBow(queuedItem.stack) || ModifierEvents.canHaveModifiersWeapon(queuedItem.stack))) && ModifierService.getModifier(queuedItem.stack) == null) {
+            if (ItemType.getItemType(queuedItem.stack) != ItemType.ANY && ModifierService.getModifier(queuedItem.stack) == null) {
                 ModifierService.setModifier(queuedItem.stack, ModifierService.modifierRoll(queuedItem.stack));
             }
         }
-
     }
 
     private static class QueuedItem {

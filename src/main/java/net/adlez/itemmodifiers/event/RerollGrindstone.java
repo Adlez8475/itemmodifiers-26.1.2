@@ -1,5 +1,6 @@
 package net.adlez.itemmodifiers.event;
 
+import net.adlez.itemmodifiers.modifiers.ItemType;
 import net.adlez.itemmodifiers.modifiers.Modifier;
 import net.adlez.itemmodifiers.modifiers.ModifierService;
 import net.minecraft.network.chat.Component;
@@ -25,7 +26,7 @@ public class RerollGrindstone {
         if (event.getLevel().getBlockState(event.getPos()).getBlock() instanceof GrindstoneBlock) {
             Player player = event.getEntity();
             ItemStack heldItem = player.getMainHandItem();
-            if ((ModifierEvents.canHaveModifiersWeapon(heldItem) || ModifierEvents.canHaveModifiersBow(heldItem) || ModifierEvents.canHaveModifiersArmor(heldItem)) && ModifierService.getModifier(heldItem) != null) {
+            if (ItemType.getItemType(heldItem) != ItemType.ANY && ModifierService.getModifier(heldItem) != null) {
                 if (player.experienceLevel >= 3 || player.isCreative()) {
                     ModifierService.removeModifier(heldItem);
                     Modifier newModifier = ModifierService.modifierRoll(heldItem);
