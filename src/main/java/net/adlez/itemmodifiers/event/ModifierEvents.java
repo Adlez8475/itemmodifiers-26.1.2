@@ -2,15 +2,12 @@ package net.adlez.itemmodifiers.event;
 
 
 import net.adlez.itemmodifiers.ItemsQueue;
+import net.adlez.itemmodifiers.modifiers.ItemType;
 import net.adlez.itemmodifiers.modifiers.Modifier;
 import net.adlez.itemmodifiers.modifiers.ModifierService;
 import net.adlez.itemmodifiers.modifiers.Rarity;
 
-import net.minecraft.core.component.DataComponents;
-
-import net.minecraft.world.item.BowItem;
-import net.minecraft.world.item.CrossbowItem;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.*;
 import net.minecraft.world.entity.player.Player;
 
 import net.neoforged.bus.api.EventPriority;
@@ -26,17 +23,6 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 @EventBusSubscriber(modid = "itemmodifiers")
 public class ModifierEvents {
 
-    public static boolean canHaveModifiersWeapon(ItemStack stack) {
-        return !stack.isEmpty() && stack.get(DataComponents.WEAPON) != null;
-    }
-    public static boolean canHaveModifiersArmor(ItemStack stack) {
-        return !stack.isEmpty() && stack.get(DataComponents.EQUIPPABLE) != null;
-    }
-    public static boolean canHaveModifiersBow(ItemStack stack) {
-        return !stack.isEmpty() && stack.getItem() instanceof BowItem || stack.getItem() instanceof CrossbowItem;
-    }
-
-
     @SubscribeEvent(
             priority = EventPriority.NORMAL,
             receiveCanceled = true
@@ -51,7 +37,6 @@ public class ModifierEvents {
 
 
     // Cover events or things that entities do to
-
     @SubscribeEvent
     public static void inventoryChanged(ItemEntityPickupEvent.Post event) {
         processInventory(event.getPlayer());
@@ -67,7 +52,7 @@ public class ModifierEvents {
     @SubscribeEvent
     public static void onCraftedItem(PlayerEvent.ItemCraftedEvent event) {
         ItemStack craftedItem = event.getCrafting();
-        if (canHaveModifiersWeapon(craftedItem) || canHaveModifiersArmor(craftedItem) || canHaveModifiersBow(craftedItem)) {
+        if (ItemType.getItemType(craftedItem) != ItemType.ANY) {
             if (ModifierService.getModifier(craftedItem) == null) {
                 ItemsQueue.addItem(craftedItem, event.getEntity());
             }
@@ -78,12 +63,9 @@ public class ModifierEvents {
 
     private static void processInventory(Player player) {
         for(ItemStack stack : player.getInventory()) {
-            if ((ModifierEvents.canHaveModifiersArmor(stack) || ModifierEvents.canHaveModifiersBow(stack) || ModifierEvents.canHaveModifiersWeapon(stack)) && ModifierService.getModifier(stack) == null) {
+            if (ItemType.getItemType(stack) != ItemType.ANY && ModifierService.getModifier(stack) == null) {
                 ItemsQueue.addItem(stack, player);
             }
         }
-
     }
-
-
 }
