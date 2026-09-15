@@ -12,7 +12,7 @@ public enum Modifier {
     UNCHANGED("Unchanged",Rarity.UNCHANGED, EquipmentSlotGroup.ANY, ItemType.ANY),
 
     // Weapons
-    HEFTY_WEAPON(
+    HEFTY(
             "Hefty",
             Rarity.COMMON,
             EquipmentSlotGroup.MAINHAND,
@@ -33,6 +33,100 @@ public enum Modifier {
             ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    DULL(
+            "Dull",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    BLUNT(
+            "Blunt",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    HEAVY(
+            "Heavy",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    SLUGGISH(
+            "Sluggish",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    DENTED(
+            "Dented",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    LIGHTWEIGHT(
+            "Lightweight",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    RUSTY(
+            "Rusty",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    BULKY(
+            "Bulky",
+            Rarity.COMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    NIMBLE(
+            "Nimble",
+            Rarity.UNCOMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    JAGGED(
+            "Jagged",
+            Rarity.UNCOMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    CUMBERSOME(
+            "Cumbersome",
+            Rarity.UNCOMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, -0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    QUICK(
+            "Quick",
+            Rarity.UNCOMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    SERRATED(
+            "Serrated",
+            Rarity.UNCOMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
     RAPID(
             "Rapid",
             Rarity.UNCOMMON,
@@ -46,6 +140,52 @@ public enum Modifier {
             EquipmentSlotGroup.MAINHAND,
             ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    SWIFT(
+            "Swift",
+            Rarity.RARE,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    SHARP(
+            "Sharp",
+            Rarity.RARE,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    BALANCED(
+            "Balanced",
+            Rarity.RARE,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    PRECISE(
+            "Precise",
+            Rarity.RARE,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.075, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    ENDURING(
+            "Enduring",
+            Rarity.RARE,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    MOMENTUM(
+            "Momentum",
+            Rarity.RARE,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     DEADLY(
             "Deadly",
@@ -62,6 +202,37 @@ public enum Modifier {
             ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.125, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.125, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    VICIOUS(
+            "Vicious",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    AGILE(
+            "Agile",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    FRENZIED(
+            "Frenzied",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    LUMBERING(
+            "Lumbering",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, -0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     GODLY(
             "Godly",
@@ -86,6 +257,13 @@ public enum Modifier {
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE,0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    ETHEREAL(
+            "Ethereal",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED,0.4, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
     LEGENDARY(
             "Legendary",
             Rarity.LEGENDARY,
@@ -101,6 +279,30 @@ public enum Modifier {
             ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    INDESTRUCTIBLE(
+            "Indestructible",
+            Rarity.LEGENDARY,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    TITANS_SLAYER(
+            "Titan's Slayer",
+            Rarity.LEGENDARY,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.35, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    CHRONOS(
+            "Chronos",
+            Rarity.LEGENDARY,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.6, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+
+    ),
     UNREAL(
             "Unreal",
             Rarity.MYTHIC,
@@ -108,6 +310,13 @@ public enum Modifier {
             ItemType.WEAPONS,
             new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.4, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.25F, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    ETERNAL(
+            "Eternal",
+            Rarity.MYTHIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.WEAPONS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     DIVINE(
             "Divine",
@@ -126,7 +335,7 @@ public enum Modifier {
             ItemType.TOOLS,
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, -0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
-    QUICK(
+    QUICK_TOOL(
             "Quick",
             Rarity.COMMON,
             EquipmentSlotGroup.MAINHAND,
@@ -147,20 +356,54 @@ public enum Modifier {
             ItemType.TOOLS,
             new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
+    REINFORCED(
+            "Reinforced",
+            Rarity.UNCOMMON,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED , 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
     FORTUITOUS(
           "Fortuitous",
           Rarity.RARE,
           EquipmentSlotGroup.MAINHAND,
           ItemType.TOOLS,
-          new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.1, AttributeModifier.Operation.ADD_VALUE)
+          new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.1, AttributeModifier.Operation.ADD_VALUE),
+          new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED, 0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    ENDURING_TOOL(
+          "Enduring",
+          Rarity.RARE,
+          EquipmentSlotGroup.MAINHAND,
+          ItemType.TOOLS,
+          new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.05, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     PROSPECTOR(
           "Prospector",
           Rarity.RARE,
           EquipmentSlotGroup.MAINHAND,
           ItemType.TOOLS,
-          new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-          new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE)
+          new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE),
+          new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+
+    ),
+    LETHAL(
+            "Lethal",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_DAMAGE, 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED, 0.15, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.05, AttributeModifier.Operation.ADD_VALUE)
+    ),
+    LUCKY(
+            "Lucky",
+            Rarity.EPIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE),
+            new ModifierService.ModifierAttribute(Attributes.LUCK,2.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
     FLEET(
             "Fleet",
@@ -169,14 +412,6 @@ public enum Modifier {
             ItemType.TOOLS,
             new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,0.2, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-    ),
-    LUCKY(
-            "Lucky",
-            Rarity.EPIC,
-            EquipmentSlotGroup.MAINHAND,
-            ItemType.TOOLS,
-            new ModifierService.ModifierAttribute(Attributes.LUCK,2.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
-            new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE)
     ),
     ARCANE(
             "Arcane",
@@ -209,13 +444,6 @@ public enum Modifier {
             new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,0.75, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.3, AttributeModifier.Operation.ADD_VALUE)
     ),
-    ETERNAL(
-            "Eternal",
-            Rarity.MYTHIC,
-            EquipmentSlotGroup.MAINHAND,
-            ItemType.TOOLS,
-            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
-    ),
     TITANIC(
             "Titanic",
             Rarity.MYTHIC,
@@ -224,14 +452,30 @@ public enum Modifier {
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.25, AttributeModifier.Operation.ADD_VALUE)
     ),
+    ETERNAL_TOOL(
+            "Eternal",
+            Rarity.MYTHIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
     COSMIC(
             "Cosmic",
             Rarity.MYTHIC,
             EquipmentSlotGroup.MAINHAND,
             ItemType.TOOLS,
-            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED,1.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,1.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
             new ModifierService.ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.4, AttributeModifier.Operation.ADD_VALUE),
             new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    ),
+    OMNIPOTENT(
+            "Omnipotent",
+            Rarity.MYTHIC,
+            EquipmentSlotGroup.MAINHAND,
+            ItemType.TOOLS,
+            new ModifierService.ModifierAttribute(Attributes.ATTACK_SPEED,0.4, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.BLOCK_BREAK_SPEED,1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
+            new ModifierService.ModifierAttribute(Attributes.MOVEMENT_SPEED, 0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
     ),
 
 
@@ -265,7 +509,7 @@ public enum Modifier {
             ItemType.ARMOR,
             new ModifierService.ModifierAttribute(Attributes.ARMOR_TOUGHNESS, 1.0, AttributeModifier.Operation.ADD_VALUE)
     ),
-    AGILE(
+    AGILE_ARMOR(
             "Agile",
             Rarity.UNCOMMON,
             EquipmentSlotGroup.ARMOR,
