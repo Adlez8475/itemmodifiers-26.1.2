@@ -6,6 +6,7 @@ import net.adlez.itemmodifiers.modifiers.*;
 
 import net.adlez.itemmodifiers.modifiers.Rarity;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.*;
 import net.minecraft.world.entity.player.Player;
 
@@ -18,8 +19,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import net.neoforged.neoforge.event.level.block.BreakBlockEvent;;
+import net.neoforged.neoforge.event.level.block.BreakBlockEvent;
 
 
 @EventBusSubscriber(modid = "itemmodifiers")
@@ -95,5 +97,24 @@ public class ModifierEvents {
                 ItemsQueue.addItem(stack, player);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onChestOpen(PlayerContainerEvent.Open event) {
+        if (event.getContainer() instanceof ChestMenu chestMenu && !event.getEntity().level().isClientSide()) {
+            processChestItems(chestMenu);
+        }
+    }
+
+    private static void processChestItems(ChestMenu chestMenu) {
+        for(int i = 0; i < chestMenu.getContainer().getContainerSize(); ++i) {
+            ItemStack stack = chestMenu.getContainer().getItem(i);
+            if (!stack.isEmpty() && ItemType.getItemType(stack) != ItemType.ANY && ModifierService.getModifier(stack) == null) {
+                ModifierService.setModifier(stack, ModifierService.modifierRoll(stack));
+                ModifierService.setItemNameAndColor(stack);
+                chestMenu.getContainer().setItem(i, stack);
+            }
+        }
+
     }
 }
