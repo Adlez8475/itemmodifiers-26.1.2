@@ -7,8 +7,7 @@ Add Terraria's modifier system to Minecraft 26.1.2!
 
 To Do
 =======
-- Fix some modifiers (wrong attributes)
-- Add more modifiers
+- Implement modifiers for Ranged Weapons (💀)
 
 Credits:
 ============
