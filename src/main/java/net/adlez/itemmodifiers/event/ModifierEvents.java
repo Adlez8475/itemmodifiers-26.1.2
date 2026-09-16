@@ -67,7 +67,7 @@ public class ModifierEvents {
     }
 
     private static double getMinedDropDoubleChance(Modifier modifier) {
-        for(ModifierService.ModifierAttribute entry : modifier.getAttribute()) {
+        for(Modifier.ModifierAttribute entry : modifier.getAttribute()) {
             if (entry.attribute().equals(ModDataComponents.DOUBLE_DROP_CHANCE)) {
                 return (entry.amount());
             }

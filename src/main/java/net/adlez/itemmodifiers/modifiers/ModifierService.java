@@ -1,13 +1,11 @@
 package net.adlez.itemmodifiers.modifiers;
 
 import net.adlez.itemmodifiers.ItemModifiers;
-import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
@@ -19,7 +17,7 @@ public class ModifierService {
 
     public static void setModifier (ItemStack stack, Modifier modifier) {
         ItemAttributeModifiers modifiers = stack.getOrDefault(DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
-        for (ModifierAttribute effect : modifier.getAttribute()) {
+        for (Modifier.ModifierAttribute effect : modifier.getAttribute()) {
             AttributeModifier attributeModifier = new AttributeModifier(getModifierId(modifier), effect.amount(), effect.operation());
             modifiers = modifiers.withModifierAdded(effect.attribute(), attributeModifier, modifier.getSlot());
         }
@@ -126,8 +124,6 @@ public class ModifierService {
         }
         return Modifier.UNCHANGED;
     }
-
-    public record ModifierAttribute(Holder<Attribute> attribute, double amount, AttributeModifier.Operation operation) {}
 
     public static void setItemNameAndColor(ItemStack stack) {
         Modifier modifier = ModifierService.getModifier(stack);
