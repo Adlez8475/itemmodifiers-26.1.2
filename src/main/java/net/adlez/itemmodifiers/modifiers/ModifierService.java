@@ -4,7 +4,6 @@ import net.adlez.itemmodifiers.ItemModifiers;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
@@ -70,7 +69,7 @@ public class ModifierService {
                     }
                 }
             }
-            if (stack.is(ItemTags.SWORDS)) {
+            if (ItemType.getItemType(stack) == ItemType.WEAPONS) {
                 type = ItemType.WEAPONS;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity && modifier.getType() == type) {
@@ -100,7 +99,7 @@ public class ModifierService {
                     }
                 }
             }
-            if (stack.is(ItemTags.SWORDS)) {
+            if (ItemType.getItemType(stack) == ItemType.WEAPONS) {
                 type = ItemType.WEAPONS;
                 for (Modifier modifier : Modifier.values()) {
                     if (modifier.getRarity() == rarity  && modifier.getType() == type) {
