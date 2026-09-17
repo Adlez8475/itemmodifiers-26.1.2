@@ -34,6 +34,8 @@ public class ItemModifiers {
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
+
         ModDataComponents.COMPONENTS.register(modEventBus);
         ModDataComponents.ATTRIBUTES.register(modEventBus);
     }

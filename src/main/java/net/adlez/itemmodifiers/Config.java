@@ -11,6 +11,22 @@ public class Config {
 
     static final ModConfigSpec SPEC = BUILDER.build();
 
+    public static final ModConfigSpec SERVER_SPEC;
+    public static final ModConfigSpec.Builder SERVER_BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec.IntValue REROLL_COST;
+
+    static {
+        SERVER_BUILDER.push("reroll");
+
+        REROLL_COST = SERVER_BUILDER
+                .comment("Cost in levels for rerolling an item modifier.")
+                .defineInRange("rerollCost", 3, 0, 100);
+
+        SERVER_BUILDER.pop();
+
+        SERVER_SPEC = SERVER_BUILDER.build();
+    }
+
     private static boolean validateItemName(final Object obj) {
         return obj instanceof String itemName && BuiltInRegistries.ITEM.containsKey(Identifier.parse(itemName));
     }

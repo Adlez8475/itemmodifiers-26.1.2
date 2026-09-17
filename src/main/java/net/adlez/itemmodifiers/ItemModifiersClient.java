@@ -1,6 +1,5 @@
 package net.adlez.itemmodifiers;
 
-import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -22,10 +21,10 @@ public class ItemModifiersClient {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
+
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        ItemModifiers.LOGGER.info("HELLO FROM CLIENT SETUP");
-        ItemModifiers.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        ItemModifiers.LOGGER.info("Item Modifiers by Adlez, loaded!");
     }
 }
