@@ -21,7 +21,9 @@ public class ItemsQueue {
 
     @SubscribeEvent
     public static void onServerTick(ServerTickEvent.Post event) {
-        processQueue();
+        if (!itemQueue.isEmpty()) {
+            processQueue();
+        }
     }
 
     private static void processQueue() {
