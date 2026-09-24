@@ -41,7 +41,7 @@ public class RerollGrindstone {
                     event.getLevel().playSound(null, event.getPos(), SoundEvents.GRINDSTONE_USE, SoundSource.BLOCKS, 1.0F, 0.8F + event.getLevel().getRandom().nextFloat() * 1.2F);
                     event.setCanceled(true);
                 } else {
-                    player.sendSystemMessage(Component.literal("Not enough XP to re-roll. Need 3 levels."));
+                    player.sendSystemMessage(Component.literal("Not enough XP to re-roll. Need " + rerollCost + " levels."));
                     event.setCanceled(true);
                 }
             }
