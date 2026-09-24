@@ -17,6 +17,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 
 import net.neoforged.fml.common.EventBusSubscriber;
 
+import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.player.ItemEntityPickupEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerContainerEvent;
@@ -117,4 +118,12 @@ public class ModifierEvents {
         }
 
     }
+    /*
+    @SubscribeEvent
+    public static void drawingRangedWeapons(LivingEntityUseItemEvent.Start event) {
+        if (event.getEntity() instanceof Player && (event.getItem().getItem() instanceof BowItem || event.getItem().getItem() instanceof CrossbowItem)) {
+            ItemStack rangedWeapon = event.getItem();
+        }
+    }
+     */
 }
