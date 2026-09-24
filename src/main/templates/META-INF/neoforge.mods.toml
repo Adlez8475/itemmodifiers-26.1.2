@@ -18,7 +18,7 @@ issueTrackerURL="https://github.com/Adlez8475/itemmodifiers-26.1.2/issues" #opti
 modId="itemmodifiers" #mandatory
 
 # The version number of the mod
-version="1.0" #mandatory
+version="1.0.1" #mandatory
 
 # A display name for the mod
 displayName="Item Modifiers" #mandatory
@@ -30,7 +30,7 @@ displayName="Item Modifiers" #mandatory
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
 
 # A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
+logoFile="itemmodifierslogo1.png" #optional
 
 # A text field displayed in the mod UI
 credits="rhysr6s for the Item Modifiers 1.20.1 and the inspiration"
