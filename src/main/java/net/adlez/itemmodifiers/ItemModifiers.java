@@ -49,6 +49,6 @@ public class ItemModifiers {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        LOGGER.info("Item Modifiers on server : loaded!");
+        LOGGER.info("Item Modifiers on server: loaded!");
     }
 }
