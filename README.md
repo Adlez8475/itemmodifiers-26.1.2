@@ -1,9 +1,15 @@
+<div align="center">
 
-Item Modifiers by Adlez, originally rhysr6s
-=======
+# Item Modifiers by Adlez, originally rhysr6s
 
-Add Terraria's modifier system to Minecraft 26.1.2!
+Modrinth: ⚠️ Under review ⚠️
 
+[![CurseForge downloads](https://cf.way2muchnoise.eu/full_1709597_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/item-modifiers-neoforge)
+
+
+Simply add Terraria's modifier-like system to Minecraft 26.1.2!
+
+</div>
 
 To Do
 =======
