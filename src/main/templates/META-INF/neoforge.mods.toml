@@ -18,7 +18,7 @@ issueTrackerURL="https://github.com/Adlez8475/itemmodifiers-26.1.2/issues" #opti
 modId="itemmodifiers" #mandatory
 
 # The version number of the mod
-version="1.0.1" #mandatory
+version="1.0.2" #mandatory
 
 # A display name for the mod
 displayName="Item Modifiers" #mandatory
