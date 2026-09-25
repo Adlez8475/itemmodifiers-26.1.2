@@ -118,6 +118,7 @@ public class ModifierEvents {
         }
 
     }
+
     /*
     @SubscribeEvent
     public static void drawingRangedWeapons(LivingEntityUseItemEvent.Start event) {
@@ -126,4 +127,5 @@ public class ModifierEvents {
         }
     }
      */
+
 }
