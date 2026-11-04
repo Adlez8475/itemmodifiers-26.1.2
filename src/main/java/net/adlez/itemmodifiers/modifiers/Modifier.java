@@ -405,7 +405,7 @@ public enum Modifier {
             EquipmentSlotGroup.MAINHAND,
             ItemType.TOOLS,
             new ModifierAttribute(ModDataComponents.DOUBLE_DROP_CHANCE, 0.15, AttributeModifier.Operation.ADD_VALUE),
-            new ModifierAttribute(Attributes.LUCK,2.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+            new ModifierAttribute(Attributes.LUCK,2.0, AttributeModifier.Operation.ADD_VALUE)
     ),
     FLEET(
             "Fleet",
