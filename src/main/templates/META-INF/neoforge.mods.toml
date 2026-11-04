@@ -30,7 +30,7 @@ displayName="Item Modifiers" #mandatory
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
 
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="itemmodifierslogo1.png" #optional
+logoFile="itemmodifierslogo1.png"
 
 # A text field displayed in the mod UI
 credits="rhysr6s for the Item Modifiers 1.20.1 and the inspiration"
